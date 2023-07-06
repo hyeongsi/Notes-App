@@ -1,0 +1,17 @@
+.todo__list {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+.todo__list__item button {
+	background-color: #f9f7e8;
+	border: none;
+	cursor: pointer;
+	float: right;
+}
+.todo__list__item:not(:last-child) {
+	border-bottom: 1px solid gray;
+}
+.item__todo {
+	display: inline-block;
+}
