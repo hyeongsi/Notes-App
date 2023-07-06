@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>TODO</title>
+		<link rel="stylesheet" href="./style.css" />
+		<script src="./scripts/script.js"></script>
+	</head>
+	<body>
+		<div class="todo__wrapper">
+			<div class="todo__title">ToDo</div>
+			<div class="todo--bg">
+				<div class="todo__box">
+					<button type="button" class="todo__box__allCkBtn">✔</button>
+					<input
+						type="text"
+						class="todo__box__input"
+						placeholder="할 일을 입력해주세요."
+					/>
+				</div>
+
+				<ul class="todo__list">
+					<li class="todo__list__item">
+						<input type="checkbox" class="item__checkbox" />
+						<div class="item__todo">할 일</div>
+						<button type="button">✖</button>
+					</li>
+					<li class="todo__list__item">
+						<input type="checkbox" class="item__checkbox" />
+						<div class="item__todo">할 일</div>
+						<button type="button">✖</button>
+					</li>
+					<li class="todo__list__item">
+						<input type="checkbox" class="item__checkbox" />
+						<div class="item__todo">할 일</div>
+						<button type="button">✖</button>
+					</li>
+				</ul>
+
+				<div class="bottom">
+					<div class="bottom__leftItmes">2 items left</div>
+					<div class="bottom_btnGroup">
+						<button type="button" class="bottom__allBtn">All</button>
+						<button type="button" class="bottom__activeBtn">Active</button>
+						<button type="button" class="bottom__completedBtn">
+							Completed
+						</button>
+					</div>
+					<button type="button" class="bottom__clearCompleted">
+						Clear Completed
+					</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
