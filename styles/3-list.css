@@ -4,13 +4,10 @@
 	list-style: none;
 }
 .todo__list__item button {
-	background-color: #f9f7e8;
-	border: none;
-	cursor: pointer;
 	float: right;
 }
 .todo__list__item:not(:last-child) {
-	border-bottom: 1px solid gray;
+	border-bottom: var(--default-border);
 }
 .item__todo {
 	display: inline-block;

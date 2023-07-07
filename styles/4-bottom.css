@@ -1,5 +1,5 @@
 .bottom {
 	display: flex;
 	justify-content: space-between;
-	border-top: 1px solid gray;
+	border-top: var(--default-border);
 }

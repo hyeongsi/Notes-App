@@ -1,14 +1,9 @@
 .todo__box {
-	border-bottom: 1px solid gray;
-}
-.todo__box__allCkBtn {
-	border: none;
-	background-color: #f9f7e8;
-	cursor: pointer;
+	border-bottom: var(--default-border);
 }
 .todo__box__input {
 	border: 0;
-	background-color: #f9f7e8;
+	background-color: var(--sub-color);
 	text-align: center;
 	width: 50%;
 }
