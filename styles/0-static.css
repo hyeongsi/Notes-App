@@ -17,6 +17,7 @@
 	background-color: var(--sub-color);
 	border: var(--default-border);
 	cursor: pointer;
+	height: 30px;
 }
 .btn:active {
 	background-color: lightgray;

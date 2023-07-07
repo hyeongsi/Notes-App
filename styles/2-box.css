@@ -1,9 +1,17 @@
 .todo__box {
+	display: grid;
 	border-bottom: var(--default-border);
+	height: 50px;
+	grid-template-columns: 1fr 10fr;
+}
+.todo__box__allCkBtn {
+	padding: 0;
+	border-right: var(--default-border);
+	font-size: x-large;
 }
 .todo__box__input {
 	border: 0;
 	background-color: var(--sub-color);
 	text-align: center;
-	width: 50%;
+	font-size: large;
 }
