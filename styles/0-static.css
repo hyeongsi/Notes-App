@@ -3,3 +3,21 @@
 	--sub-color: #f9f7e8;
 	--default-border: 1px solid gray;
 }
+
+.tpBtn {
+	border: none;
+	background-color: var(--sub-color);
+	cursor: pointer;
+}
+.tpBtn:active {
+	color: lightgray;
+}
+
+.btn {
+	background-color: var(--sub-color);
+	border: var(--default-border);
+	cursor: pointer;
+}
+.btn:active {
+	background-color: lightgray;
+}
