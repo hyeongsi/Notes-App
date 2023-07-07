@@ -1,7 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+
 :root {
 	--main-color: #ff8b8b;
 	--sub-color: #f9f7e8;
-	--default-border: 1px solid gray;
+	--default-border: 1px solid lightgray;
+	--focus-shadow: 0px 0px 5px gray inset;
+}
+
+html {
+	height: 100%;
+	font-family: "Noto Sans KR", sans-serif;
+}
+body {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	min-height: 100%;
+	background-color: var(--main-color);
 }
 
 .tpBtn {
@@ -10,15 +25,19 @@
 	cursor: pointer;
 }
 .tpBtn:active {
-	color: lightgray;
+	box-shadow: var(--focus-shadow);
 }
 
 .btn {
 	background-color: var(--sub-color);
 	border: var(--default-border);
 	cursor: pointer;
-	height: 30px;
+	height: 24px;
+	border-radius: 5px;
+	font-family: "Noto Sans KR", sans-serif;
+	letter-spacing: 1px;
+	font-weight: 600;
 }
 .btn:active {
-	background-color: lightgray;
+	box-shadow: var(--focus-shadow);
 }

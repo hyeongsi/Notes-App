@@ -3,8 +3,24 @@
 	padding: 0px;
 	list-style: none;
 }
-.todo__list__item button {
-	float: right;
+.todo__list__item {
+	display: grid;
+	grid-template-columns: 1fr 10fr;
+	align-items: center;
+	height: 3rem;
+}
+.item__checkbox:checked + .item__todo{
+	text-decoration: line-through;
+}
+.item__todo {
+	position: relative;
+}
+.item__todo:after {
+	position: absolute;
+	content: "✖";
+	right: 10px;
+	cursor: pointer;
+	oncli
 }
 .todo__list__item:not(:last-child) {
 	border-bottom: var(--default-border);

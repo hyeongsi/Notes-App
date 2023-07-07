@@ -1,7 +1,11 @@
 .bottom {
+	padding: 0px 20px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	border-top: var(--default-border);
 	height: 50px;
+}
+.bottom_btnGroup .btn {
+	margin-left: 10px;
 }

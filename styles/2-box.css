@@ -4,14 +4,20 @@
 	height: 50px;
 	grid-template-columns: 1fr 10fr;
 }
-.todo__box__allCkBtn {
+.todo__box .tpBtn {
 	padding: 0;
-	border-right: var(--default-border);
 	font-size: x-large;
+}
+.todo__box__allCkBtn {
+	border-right: var(--default-border);
 }
 .todo__box__input {
 	border: 0;
 	background-color: var(--sub-color);
 	text-align: center;
 	font-size: large;
+	outline: none;
+}
+.todo__box__input:focus {
+	box-shadow: var(--focus-shadow);
 }
