@@ -23,21 +23,3 @@ body {
 	outline: var(--default-border);
 	background-color: var(--sub-color);
 }
-
-.tpBtn {
-	border: none;
-	background-color: var(--sub-color);
-	cursor: pointer;
-}
-.tpBtn:active {
-	color: lightgray;
-}
-
-.btn {
-	background-color: var(--sub-color);
-	border: var(--default-border);
-	cursor: pointer;
-}
-.btn:active {
-	background-color: lightgray;
-}
