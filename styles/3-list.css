@@ -9,7 +9,7 @@
 	align-items: center;
 	height: 3rem;
 }
-.item__checkbox:checked + .item__todo{
+.item__checkbox:checked + .item__todo {
 	text-decoration: line-through;
 }
 .item__todo {
@@ -20,7 +20,6 @@
 	content: "✖";
 	right: 10px;
 	cursor: pointer;
-	oncli
 }
 .todo__list__item:not(:last-child) {
 	border-bottom: var(--default-border);
