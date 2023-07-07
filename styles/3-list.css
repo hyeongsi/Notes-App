@@ -15,7 +15,7 @@
 .item__todo {
 	position: relative;
 }
-.item__todo:after {
+.todo--delete {
 	position: absolute;
 	content: "✖";
 	right: 10px;

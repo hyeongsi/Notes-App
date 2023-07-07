@@ -8,7 +8,6 @@
 	justify-content: center;
 	margin: 3rem 0px;
 	min-width: 600px;
-	border-radius: 100px;
 }
 .todo--bg {
 	outline: var(--default-border);

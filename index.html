@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>TODO</title>
 		<link rel="stylesheet" href="./style.css" />
-		<script src="./scripts/script.js"></script>
+		<script src="./scripts/script.js" defer></script>
 	</head>
 	<body>
 		<div class="todo__wrapper">
@@ -21,19 +21,18 @@
 				</div>
 
 				<ul class="todo__list">
-					<li class="todo__list__item">
+					<!-- 
+						<li class="todo__list__item">
 						<input type="checkbox" class="item__checkbox" />
-						<div class="item__todo">할 일</div>
-					</li>
-
-					<li class="todo__list__item">
-						<input type="checkbox" class="item__checkbox" />
-						<div class="item__todo">할 일</div>
-					</li>
+						<div class="item__todo">
+							할 일<span class="todo--delete">✖</span>
+						</div>
+					</li> 
+				-->
 				</ul>
 
 				<div class="bottom">
-					<div class="bottom__leftItmes">2 items left</div>
+					<div class="bottom__leftItmes">0 items left</div>
 					<div class="bottom_btnGroup">
 						<button type="button" class="bottom__allBtn btn">All</button>
 						<button type="button" class="bottom__activeBtn btn">Active</button>
