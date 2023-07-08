@@ -14,7 +14,7 @@
 				<div class="todo__box">
 					<button type="button" class="todo__box__allCkBtn tpBtn">✔</button>
 					<input
-						type="search"
+						type="text"
 						class="todo__box__input"
 						placeholder="할 일을 입력해주세요."
 					/>
@@ -22,13 +22,21 @@
 
 				<ul class="todo__list">
 					<!-- 
-						<li class="todo__list__item">
-						<input type="checkbox" class="item__checkbox" />
+					<li class="todo__list__item">
+						<input type="checkbox" class="item__checkbox" id="itemCk1" />
+						<label for="itemCk1"></label>
 						<div class="item__todo">
-							할 일<span class="todo--delete">✖</span>
+							<input
+								type="text"
+								class="item__todo__input"
+								value="할 일"
+								readonly
+							/>
+							<span class="todo--edit">💬</span>
+							<span class="todo--delete">✖</span>
 						</div>
 					</li> 
-				-->
+					-->
 				</ul>
 
 				<div class="bottom">

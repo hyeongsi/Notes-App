@@ -41,3 +41,9 @@ body {
 .btn:active {
 	box-shadow: var(--focus-shadow);
 }
+
+.item__checkbox {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}

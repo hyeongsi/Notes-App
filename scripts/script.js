@@ -34,53 +34,81 @@ function allCkToggle() {
 }
 
 // box의 input에 값을 입력하고 "enter" 입력 시 작동
-boxInput.addEventListener("keyup", function (event) {
+boxInput.addEventListener("keyup", function (e) {
 	if (event.keyCode == 13 && boxInput.value != "") {
 		addItem();
 		boxInput.value = "";
 	}
 });
+// box lost focus -> text clear
+boxInput.addEventListener("blur", function () {
+	boxInput.value = "";
+});
 
+let itemCkIdCnt = 0;
 // input의 값을 토대로 item 생성
-/* 
-<li class="todo__list__item">
-  <input type="checkbox" class="item__checkbox" />
-  <div class="item__todo">
-    할 일<span class="todo--delete">✖</span>
-  </div>
-</li> 
-*/
 function addItem() {
 	let itemLi = document.createElement("li");
 	itemLi.className = "todo__list__item";
 
 	let itemCkBox = document.createElement("input");
 	itemCkBox.className = "item__checkbox";
+	itemCkBox.id = "itemCk" + itemCkIdCnt;
 	itemCkBox.setAttribute("type", "checkbox");
 	itemCkBox.addEventListener("change", updateLeftItem);
+
+	let itemCkBoxLabel = document.createElement("label");
+	itemCkBoxLabel.setAttribute("for", "itemCk" + itemCkIdCnt++);
 
 	let itemToDo = document.createElement("div");
 	itemToDo.className = "item__todo";
 
-	let itemToDoText = document.createTextNode(boxInput.value);
+	let itemToDoText = document.createElement("input");
+	itemToDoText.className = "item__todo__input";
+	itemToDoText.setAttribute("type", "text");
+	itemToDoText.setAttribute("value", boxInput.value);
+	itemToDoText.setAttribute("readOnly", "readOnly");
 	itemToDo.appendChild(itemToDoText);
+	itemToDoText.addEventListener("keyup", function (e) {
+		if (event.keyCode == 13) {
+			e.target.readOnly = true;
+		}
+	});
+	itemToDoText.addEventListener("blur", function (e) {
+		e.target.readOnly = true;
+	});
+
+	let itemToDoEdit = document.createElement("span");
+	itemToDoEdit.className = "todo--edit";
+	let itemToDoEditText = document.createTextNode("💬");
+
+	itemToDo.appendChild(itemToDoEdit);
+	itemToDoEdit.appendChild(itemToDoEditText);
+	itemToDoEdit.addEventListener("click", function (e) {
+		editItem(e.target.previousElementSibling);
+	});
 
 	let itemToDoDel = document.createElement("span");
 	itemToDoDel.className = "todo--delete";
 	let itemToDoDelText = document.createTextNode("✖");
 
+	itemToDo.appendChild(itemToDoDel);
+	itemToDoDel.appendChild(itemToDoDelText);
 	itemToDoDel.addEventListener("click", function (e) {
 		deleteItem(e.target.parentNode.parentNode);
 	});
 
-	itemToDoDel.appendChild(itemToDoDelText);
-	itemToDo.appendChild(itemToDoDel);
-
 	itemLi.appendChild(itemCkBox);
+	itemLi.appendChild(itemCkBoxLabel);
 	itemLi.appendChild(itemToDo);
 	todoList.appendChild(itemLi);
 
 	updateLeftItem();
+}
+
+function editItem(e) {
+	e.readOnly = false;
+	e.focus();
 }
 
 function deleteItem(e) {

@@ -6,24 +6,61 @@
 .todo__list__item {
 	display: grid;
 	grid-template-columns: 1fr 10fr;
-	align-items: center;
+	place-items: center;
 	height: 3rem;
 }
-.item__checkbox:checked + .item__todo {
+.item__checkbox {
+	display: none;
+}
+.item__checkbox + label {
+	width: 20px;
+	height: 20px;
+	border: 3px solid lightgray;
+	position: relative;
+}
+.item__checkbox:checked + label::after {
+	content: "✔";
+	display: inline-block;
+	text-align: center;
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
+	line-height: 5px;
+}
+.item__checkbox:checked + label + .item__todo input {
 	text-decoration: line-through;
 }
 .item__todo {
+	display: grid;
+	grid-template-columns: 10fr 1fr 1fr;
 	position: relative;
+	height: 100%;
+	width: 100%;
+}
+.item__todo__input {
+	background-color: var(--sub-color);
+	outline: none;
+	border: 0;
+	font-size: medium;
+	font-weight: 600;
+}
+.item__todo__input:not([readonly]):focus {
+	box-shadow: var(--focus-shadow);
+}
+.todo--edit {
+	content: "💬";
+	font-size: 20px;
+	cursor: pointer;
+	text-align: center;
+	line-height: 48px;
 }
 .todo--delete {
-	position: absolute;
 	content: "✖";
-	right: 10px;
+	font-size: 20px;
 	cursor: pointer;
+	text-align: center;
+	line-height: 48px;
 }
 .todo__list__item:not(:last-child) {
 	border-bottom: var(--default-border);
-}
-.item__todo {
-	display: inline-block;
 }
