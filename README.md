@@ -1,1 +1,1 @@
-[ToDo App Web Site - v1.0.0](https://hyeongsi.github.io/TODO-App/)
+<a href="https://hyeongsi.github.io/TODO-App/" target="_blank">ToDo App Web Site - v1.0.0</a>
