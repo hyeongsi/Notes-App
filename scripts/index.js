@@ -1,5 +1,10 @@
 let itemId = 0;
 let todoList = [];
+// {
+// 	id:
+// 	isComplete:
+// 	text:
+// }
 
 const Mode = {
 	ALL: "ALL",
@@ -241,18 +246,21 @@ function addLastItemEvent() {
 	});
 
 	// 수정 후 엔터 -> 수정 불가
-	$(input).on("keyup", (key) => {
+	$(input).on("keyup", function (key) {
 		if (key.keyCode == 13) {
 			$(this).attr("readonly", true);
+			editInputVal(this);
 		}
 	});
 	// 수정 중 다른 동작 -> 수정 불가
-	$(input).on("blur", () => {
+	$(input).on("blur", function () {
 		$(this).attr("readonly", true);
+		editInputVal(this);
 	});
 
 	$(editBtn).on("click", () => {
-		$(input).attr("readonly", true);
+		$(input).attr("readonly", false);
+		$(input).focus();
 	});
 
 	// x 버튼 누르면 삭제
@@ -274,10 +282,32 @@ function reloadExplain() {
 	});
 
 	if (mode == Mode.ACTIVE) {
-		$(".bottom__leftItmes").html(
-			`<b>Active</b> ${todoList.length - compCnt} items`
-		);
+		$(".bottom__leftItmes").html(`<b>Active</b> ${todoList.length - compCnt} items`);
 	} else {
 		$(".bottom__leftItmes").html(`<b>Complete</b> ${compCnt} items`);
+	}
+}
+
+function findListObj(id) {
+	for (let i = 0; i < todoList.length; i++) {
+		if (todoList[i].id == id) {
+			return todoList[i];
+		}
+	}
+
+	return null;
+}
+
+function editInputVal(input) {
+	let item = findListObj($(input).parent().parent().attr("id"));
+	if (item == null) {
+		return;
+	}
+
+	if ($(input).val() == "") {
+		$(input).val(item.text);
+	} else {
+		// db작업
+		item.text = $(input).val();
 	}
 }
