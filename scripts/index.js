@@ -10,6 +10,15 @@ $(document).ready(function () {
 	// 모두 체크
 	$(".todo__box__allCkBtn").on("click", completeToggleAll);
 
+	// 모든 데이터 출력
+	$(".bottom__allBtn").on("click", showAll);
+
+	// 활성(체크 X) 데이터 출력
+	$(".bottom__activeBtn").on("click", showActive);
+
+	// 완료(체크O) 데이터 출력
+	$(".bottom__completedBtn").on("click", showComplete);
+
 	// 완료 모두 제거
 	$(".bottom__clearCompleted").on("click", clearComplete);
 });
@@ -22,7 +31,7 @@ function clearBoxInput() {
 // 아이템 추가
 function addToDo(key) {
 	if (key.keyCode == 13 && $(".todo__box__input").val() != "") {
-		addListItem();
+		addListItem(itemId++, false, $(".todo__box__input").val());
 		clearBoxInput();
 	}
 }
@@ -58,29 +67,77 @@ function completeToggleAll() {
 		});
 }
 
+// 모든 데이터 출력
+function showAll() {
+	$(".todo__list").empty();
+
+	for (let i = 0; i < todoList.length; i++) {
+		let item = {
+			id: todoList[i].id,
+			isComplete: todoList[i].isComplete,
+			text: todoList[i].text,
+		};
+		addItemHTML(item);
+	}
+}
+// 활성(체크X) 데이터 출력
+function showActive() {
+	$(".todo__list").empty();
+
+	for (let i = 0; i < todoList.length; i++) {
+		if (todoList[i].isComplete) {
+			continue;
+		}
+
+		let item = {
+			id: todoList[i].id,
+			isComplete: todoList[i].isComplete,
+			text: todoList[i].text,
+		};
+		addItemHTML(item);
+	}
+}
+// 완료(체크O) 데이터 출력
+function showComplete() {
+	$(".todo__list").empty();
+
+	for (let i = 0; i < todoList.length; i++) {
+		if (!todoList[i].isComplete) {
+			continue;
+		}
+
+		let item = {
+			id: todoList[i].id,
+			isComplete: todoList[i].isComplete,
+			text: todoList[i].text,
+		};
+		addItemHTML(item);
+	}
+}
+
 // 완료 제거
 function clearComplete() {
 	for (let i = todoList.length - 1; i >= 0; i--) {
 		if (todoList[i].isComplete) {
 			// db작업
 			$(`#${todoList[i].id}`).remove();
-			todoList.pop();
+			todoList.splice(i, 1);
 		}
 	}
+
+	console.log(todoList);
 }
 
-// input의 값을 토대로 item 생성
-function addListItem() {
-	let item = {
-		id: itemId++,
-		isComplete: false,
-		text: $(".todo__box__input").val(),
-	};
-
-	// db작업
+function addItemHTML(item) {
 	let childTag = `
 	<li class="todo__list__item" id = "${item.id}"> 
-		<input type="checkbox" class="item__checkbox" id="itemCk${item.id}" />
+		<input type="checkbox" class="item__checkbox" id="itemCk${item.id}" `;
+
+	if (item.isComplete) {
+		childTag += `checked`;
+	}
+
+	childTag += `/>
 		<label for="itemCk${item.id}"></label>
 		<div class="item__todo">
 			<input
@@ -92,17 +149,37 @@ function addListItem() {
 			<span class="todo--edit">💬</span>
 			<span class="todo--delete">✖</span>
 		</div>
-	</li> 
-	`;
+	</li> `;
 
 	$(".todo__list").append(childTag);
-	todoList.push(item);
 	addLastItemEvent(); // 추가한 태그들 이벤트 추가
-
 	console.log(todoList);
 }
+
+// 입력 값을 토대로 item 생성
+function addListItem(id, isComplete, text) {
+	let item = {
+		id: id,
+		isComplete: isComplete,
+		text: text,
+	};
+
+	// db작업
+	todoList.push(item);
+	addItemHTML(item);
+}
 // item 삭제
-function deleteListItem(obj) {}
+function deleteListItem(obj) {
+	let id = obj.attr("id");
+
+	let index = todoList.findIndex((i) => i.id == id);
+	console.log(index);
+	if (index != -1) {
+		obj.remove();
+		todoList.splice(index, 1);
+		console.log(todoList);
+	}
+}
 // item 수정
 function updateListItem() {}
 
@@ -113,12 +190,15 @@ function addLastItemEvent() {
 	let editBtn = $(itemToDo).children()[1];
 	let deleteBtn = $(itemToDo).children()[2];
 
-	// 클릭 시 데이터 업데이트
+	// 체크박스 클릭 여부 토글
 	$(ckbox).on("change", () => {
 		// db작업
-
-		//@@@밑부분 버그
-		todoList[todoList.length - 1].isComplete = $(this).is(":checked");
+		let id = $(ckbox).parent().attr("id");
+		let index = todoList.findIndex((i) => i.id == id);
+		if (index != -1) {
+			todoList[index].isComplete = $(ckbox).is(":checked");
+			console.log(todoList);
+		}
 	});
 
 	// 수정 후 엔터 -> 수정 불가
@@ -136,6 +216,7 @@ function addLastItemEvent() {
 		$(input).attr("readonly", true);
 	});
 
+	// x 버튼 누르면 삭제
 	$(deleteBtn).on("click", () => {
 		deleteListItem($(deleteBtn).parent().parent());
 	});
