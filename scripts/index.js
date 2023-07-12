@@ -38,7 +38,14 @@ function addToDo(key) {
 	if (key.keyCode == 13 && $(".todo__box__input").val() != "") {
 		addListItem(itemId++, false, $(".todo__box__input").val());
 		clearBoxInput();
+		reloadExplain();
 	}
+}
+
+// 모드 변경
+function changeMode(value) {
+	mode = value;
+	reloadExplain();
 }
 
 // 모두 완료 토글
@@ -82,7 +89,8 @@ function completeToggleAll() {
 
 // 모든 데이터 출력
 function showAll() {
-	mode = Mode.ALL;
+	changeMode(Mode.ALL);
+
 	$(".todo__list").empty();
 
 	for (let i = 0; i < todoList.length; i++) {
@@ -96,7 +104,8 @@ function showAll() {
 }
 // 활성(체크X) 데이터 출력
 function showActive() {
-	mode = Mode.ACTIVE;
+	changeMode(Mode.ACTIVE);
+
 	$(".todo__list").empty();
 
 	for (let i = 0; i < todoList.length; i++) {
@@ -114,7 +123,7 @@ function showActive() {
 }
 // 완료(체크O) 데이터 출력
 function showComplete() {
-	mode = Mode.COMPLETED;
+	changeMode(Mode.COMPLETED);
 	$(".todo__list").empty();
 
 	for (let i = 0; i < todoList.length; i++) {
@@ -141,9 +150,10 @@ function clearComplete() {
 		}
 	}
 
-	console.log(todoList);
+	reloadExplain();
 }
 
+// 실제 Item을 html요소로 화면에 출력
 function addItemHTML(item) {
 	let childTag = `
 	<li class="todo__list__item" id = "${item.id}"> 
@@ -169,9 +179,7 @@ function addItemHTML(item) {
 
 	$(".todo__list").append(childTag);
 	addLastItemEvent(); // 추가한 태그들 이벤트 추가
-	console.log(todoList);
 }
-
 // 입력 값을 토대로 item 생성
 function addListItem(id, isComplete, text) {
 	let item = {
@@ -196,12 +204,12 @@ function deleteListItem(obj) {
 	let id = obj.attr("id");
 
 	let index = todoList.findIndex((i) => i.id == id);
-	console.log(index);
 	if (index != -1) {
 		obj.remove();
 		todoList.splice(index, 1);
-		console.log(todoList);
 	}
+
+	reloadExplain();
 }
 // item 수정
 function updateListItem() {}
@@ -224,13 +232,12 @@ function addLastItemEvent() {
 			todoList[index].isComplete = isCk;
 		}
 
+		reloadExplain();
 		if (mode == Mode.ACTIVE && isCk) {
 			$(ckbox).parent().remove();
 		} else if (mode == Mode.COMPLETED && !isCk) {
 			$(ckbox).parent().remove();
 		}
-
-		console.log(todoList);
 	});
 
 	// 수정 후 엔터 -> 수정 불가
@@ -252,4 +259,25 @@ function addLastItemEvent() {
 	$(deleteBtn).on("click", () => {
 		deleteListItem($(deleteBtn).parent().parent());
 	});
+}
+
+// 좌측 하단 아이템이 몇개인지 알려주는 텍스트 갱신
+function reloadExplain() {
+	if (mode == Mode.ALL) {
+		$(".bottom__leftItmes").text(`${todoList.length} items`);
+		return;
+	}
+
+	let compCnt = 0;
+	$.each(todoList, function (idx, ele) {
+		if (ele.isComplete) compCnt++;
+	});
+
+	if (mode == Mode.ACTIVE) {
+		$(".bottom__leftItmes").html(
+			`<b>Active</b> ${todoList.length - compCnt} items`
+		);
+	} else {
+		$(".bottom__leftItmes").html(`<b>Complete</b> ${compCnt} items`);
+	}
 }

@@ -25,6 +25,9 @@ h1 {
 	margin: 0;
 }
 
+b {
+	color: blue;
+}
 .tpBtn {
 	border: none;
 	background-color: var(--sub-color);
