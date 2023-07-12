@@ -1,6 +1,13 @@
 let itemId = 0;
 let todoList = [];
 
+const Mode = {
+	ALL: "ALL",
+	ACTIVE: "ACTIVE",
+	COMPLETED: "COMPLETED",
+};
+let mode = Mode.ALL;
+
 $(document).ready(function () {
 	// 입력
 	let boxInput = $(".todo__box__input");
@@ -12,10 +19,8 @@ $(document).ready(function () {
 
 	// 모든 데이터 출력
 	$(".bottom__allBtn").on("click", showAll);
-
 	// 활성(체크 X) 데이터 출력
 	$(".bottom__activeBtn").on("click", showActive);
-
 	// 완료(체크O) 데이터 출력
 	$(".bottom__completedBtn").on("click", showComplete);
 
@@ -65,10 +70,19 @@ function completeToggleAll() {
 		.each((idx, ele) => {
 			ele.checked = ck;
 		});
+
+	if (mode != Mode.ALL) {
+		if (mode == Mode.ACTIVE) {
+			showActive();
+		} else if (mode == Mode.COMPLETED) {
+			showComplete();
+		}
+	}
 }
 
 // 모든 데이터 출력
 function showAll() {
+	mode = Mode.ALL;
 	$(".todo__list").empty();
 
 	for (let i = 0; i < todoList.length; i++) {
@@ -82,6 +96,7 @@ function showAll() {
 }
 // 활성(체크X) 데이터 출력
 function showActive() {
+	mode = Mode.ACTIVE;
 	$(".todo__list").empty();
 
 	for (let i = 0; i < todoList.length; i++) {
@@ -99,6 +114,7 @@ function showActive() {
 }
 // 완료(체크O) 데이터 출력
 function showComplete() {
+	mode = Mode.COMPLETED;
 	$(".todo__list").empty();
 
 	for (let i = 0; i < todoList.length; i++) {
@@ -166,6 +182,13 @@ function addListItem(id, isComplete, text) {
 
 	// db작업
 	todoList.push(item);
+
+	if (mode == Mode.ACTIVE && isComplete) {
+		return;
+	} else if (mode == Mode.COMPLETED && !isComplete) {
+		return;
+	}
+
 	addItemHTML(item);
 }
 // item 삭제
@@ -195,10 +218,19 @@ function addLastItemEvent() {
 		// db작업
 		let id = $(ckbox).parent().attr("id");
 		let index = todoList.findIndex((i) => i.id == id);
+
+		let isCk = $(ckbox).is(":checked");
 		if (index != -1) {
-			todoList[index].isComplete = $(ckbox).is(":checked");
-			console.log(todoList);
+			todoList[index].isComplete = isCk;
 		}
+
+		if (mode == Mode.ACTIVE && isCk) {
+			$(ckbox).parent().remove();
+		} else if (mode == Mode.COMPLETED && !isCk) {
+			$(ckbox).parent().remove();
+		}
+
+		console.log(todoList);
 	});
 
 	// 수정 후 엔터 -> 수정 불가
