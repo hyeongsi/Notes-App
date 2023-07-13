@@ -23,7 +23,7 @@
 	height: 100%;
 }
 .content::before {
-	content: "SignUp";
+	content: "Login";
 	display: inline-block;
 	text-align: right;
 	color: var(--sub-color);
@@ -62,9 +62,11 @@
 	content: "😃";
 }
 .form__item.password::before {
+	text-align: center;
 	content: "🔒";
 }
 .form__item.user::before {
+	text-align: center;
 	content: "🤗";
 }
 .form__item > input {
@@ -73,14 +75,12 @@
 	outline: none;
 	min-height: 50px;
 }
-
-.essential__signUp {
-	color: blue;
-	display: none;
-}
-
 .btn__submit {
 	margin-top: 50px;
 	min-height: 50px;
 	width: 100%;
+}
+
+.essential__text {
+	color: blue;
 }

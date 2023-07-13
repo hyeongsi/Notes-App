@@ -27,6 +27,10 @@ h1 {
 b {
 	color: blue;
 }
+a {
+	text-decoration: none;
+	color: black;
+}
 
 .tpBtn {
 	border: none;
