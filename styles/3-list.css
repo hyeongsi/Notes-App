@@ -29,6 +29,7 @@
 }
 .item__checkbox:checked + label + .item__todo input {
 	text-decoration: line-through;
+	color: lightgray;
 }
 .item__todo {
 	display: grid;
