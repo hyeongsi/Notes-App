@@ -10,10 +10,6 @@
 	</head>
 	<body>
 		<div class="todo__wrapper">
-			<div class="menu__container">
-				<div class="menu btn" id="login"><a href="./signIn.html">로그인</a></div>
-				<div class="menu btn" id="register"><a href="./signUp.html">회원가입</a></div>
-			</div>
 			<div class="todo__title">ToDo</div>
 			<div class="todo--bg">
 				<div class="todo__box">
@@ -21,29 +17,12 @@
 					<input type="text" class="todo__box__input" placeholder="할 일을 입력해주세요." />
 				</div>
 
-				<ul class="todo__list">
-					<!-- 
-						<li class="todo__list__item" id = "0"> 
-							<input type="checkbox" class="item__checkbox" id="itemCk1" />
-							<label for="itemCk1"></label>
-							<div class="item__todo">
-								<input
-									type="text"
-									class="item__todo__input"
-									value="할 일"
-									readonly
-								/>
-								<span class="todo--edit">💬</span>
-								<span class="todo--delete">✖</span>
-							</div>
-						</li> 
-				-->
-				</ul>
+				<ul class="todo__list"></ul>
 
 				<div class="bottom">
 					<div class="bottom__leftItmes">0 items</div>
 					<div class="bottom_btnGroup">
-						<button type="button" class="bottom__allBtn btn">All</button>
+						<button type="button" class="bottom__allBtn btn select">All</button>
 						<button type="button" class="bottom__activeBtn btn">Active</button>
 						<button type="button" class="bottom__completedBtn btn">Completed</button>
 					</div>

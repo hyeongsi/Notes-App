@@ -12,3 +12,7 @@
 .btmMargin {
 	height: 100px;
 }
+
+.select {
+	border: 2px solid darkorange;
+}

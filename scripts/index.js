@@ -19,11 +19,6 @@ $(document).ready(function () {
 	boxInput.on("keyup", addToDo);
 	boxInput.on("blur", clearBoxInput);
 
-	// $(."menu__container").append(메뉴와 관련된 버튼, 텍스트 등 정보);
-	// 로그인 여부를 확인하고 메뉴 적절히 생성하는 코드 필요
-	// <div class="menu btn" id="login">로그인</div>
-	// <div class="menu btn" id="register">회원가입</div>
-
 	// 모두 체크
 	$(".todo__box__allCkBtn").on("click", completeToggleAll);
 
@@ -56,6 +51,7 @@ function addToDo(key) {
 function changeMode(value) {
 	mode = value;
 	reloadExplain();
+	changeBtnSelect();
 }
 
 // 모두 완료 토글
@@ -287,9 +283,9 @@ function reloadExplain() {
 	});
 
 	if (mode == Mode.ACTIVE) {
-		$(".bottom__leftItmes").html(`<b>Active</b> ${todoList.length - compCnt} items`);
+		$(".bottom__leftItmes").html(`${todoList.length - compCnt} items`);
 	} else {
-		$(".bottom__leftItmes").html(`<b>Complete</b> ${compCnt} items`);
+		$(".bottom__leftItmes").html(`${compCnt} items`);
 	}
 }
 
@@ -314,5 +310,25 @@ function editInputVal(input) {
 	} else {
 		// db작업
 		item.text = $(input).val();
+	}
+}
+
+function changeBtnSelect() {
+	let all = $(".bottom__allBtn");
+	let active = $(".bottom__activeBtn");
+	let complete = $(".bottom__completedBtn");
+
+	if (mode == Mode.ALL) {
+		all.addClass("select");
+		active.removeClass("select");
+		complete.removeClass("select");
+	} else if (mode == Mode.ACTIVE) {
+		all.removeClass("select");
+		active.addClass("select");
+		complete.removeClass("select");
+	} else {
+		all.removeClass("select");
+		active.removeClass("select");
+		complete.addClass("select");
 	}
 }
