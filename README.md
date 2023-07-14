@@ -8,10 +8,8 @@
 <br/>
 
 ## 📋 구현 기능
-<table>
-  <tr>
-    <td><img width="500" src="https://github.com/hyeongsi/TODO-App/blob/main/images/%EC%84%A4%EB%AA%85.PNG?raw=true"></td>
-    <td width="550"><details>
+<img width="600" src="https://github.com/hyeongsi/TODO-App/blob/main/images/%EC%84%A4%EB%AA%85.PNG?raw=true">
+<details>
   <summary><b>1️번. 전체 선택 토글</b></summary>
   <pre>
   * 하나 이상의 할 일이 미완료 상태일 경우 전체를 완료 상태로 변환
@@ -66,9 +64,7 @@
 `완료된 일 목록을 출력`<br/>
 
 <b>11번. Clear Completed 버튼</b>
-`완료된 모든 일 제거`<br/></td>
-  </tr>
-</table>
+`완료된 모든 일 제거`<br/>
 
 ## 🛠 기술 스택
 <img src="https://img.shields.io/badge/html-E34F26?style=flat-square&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/css-1572B6?style=flat-square&logo=css3&logoColor=white"/> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/> <img src="https://img.shields.io/badge/jquery-0769AD?style=flat-square&logo=jquery&logoColor=white"/><br/>
